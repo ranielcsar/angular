@@ -1,0 +1,38 @@
+<section>
+  <ul>
+    <ng-container *ngIf="loading; else heroesContent">
+      <p>Loading...</p>
+    </ng-container>
+
+    <ng-template #heroesContent>
+      <li
+        *ngFor="let hero of heroes"
+        class="max-w-fit cursor-pointer p-2 px-4 text-lg hover:bg-emerald-400 hover:text-emerald-50"
+      >
+        <button
+          [class.selected]="hero === selectedHero"
+          type="button"
+          (click)="onSelect(hero)"
+        >
+          Hero name: <span>{{ hero.name }}</span>
+        </button>
+      </li>
+    </ng-template>
+  </ul>
+
+  <div
+    *ngIf="selectedHero"
+    class="align-center ml-10 flex w-fit justify-center rounded-lg border-4 px-10 py-2 text-8xl text-red-400"
+  >
+    {{ selectedHero.name }}
+  </div>
+</section>
+
+<style>
+  .selected {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    text-decoration-color: #34d399;
+  }
+</style>
